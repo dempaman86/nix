@@ -73,20 +73,33 @@ Vi har precis borjat flytta Neovim LSP/lint fran Mason till Nix.
     - `~/neowiki/test.md` -> `neowiki`
   - Tolka detta som kosmetiska varningar tills motsatsen bevisats i riktiga buffrar.
 
+## Git-lage
+
+- `nix`-repot ar committat med:
+  - `2da3101 feat: move macOS laptop setup into nix repo`
+- `nvim`-repot ar committat med:
+  - `fa7a39b chore: move language tooling from Mason to Nix`
+- `tmux`-repot ar rent.
+- Det gamla `Hammerspoon`-repot ar inte en aktiv source of truth langre och ar fortfarande oinitierat/ostadat.
+
 ## Nasta steg
 
-1. `go` ar nu tillagt i `modules/home/packages.nix`, men inte verifierat live an.
-2. `lua-language-server` och `marksman` ar nu ocksa tillagda i `modules/home/packages.nix`.
-3. Kora:
-   - `cd /Users/dennis/Documents/Projects/nix`
-   - `sudo darwin-rebuild switch --flake "path:$PWD#denniss-MacBook-Pro"`
-4. Verifiera:
+1. Pusha `nix`- och `nvim`-repona om de ska anvandas for VM/bootstrap-test.
+2. For ett riktigt rent test:
+   - skapa ny macOS-anvandare eller macOS-VM
+   - installera Nix
+   - klona `nix` och `nvim`
+   - kora `darwin-rebuild switch`
+3. Verifiera i den rena miljon:
+   - repos klonas/lankas ratt under `~/Documents/Projects`
    - `command -v go`
    - `command -v lua-language-server`
    - `command -v marksman`
-   - oppna `go.work` i `nvim`
+   - `command -v pyright`
+   - `command -v bash-language-server`
+   - oppna `go.work`, `test.py`, `test.sh`, `.yaml`, markdown i `nvim`
    - kora `:LspInfo`
-5. Om `go.work` fungerar, fortsatta lugnt med LSP via Nix ett i taget.
+4. Om allt fungerar, ar Mason i praktiken overflodig och kan tas bort helt ur `nvim`-repot i ett senare steg.
 
 ## Rekommenderad riktning
 
