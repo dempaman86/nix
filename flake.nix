@@ -17,21 +17,21 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
     let
-      envOr =
-        name: fallback:
+      envFirst =
+        names: fallback:
         let
-          value = builtins.getEnv name;
+          values = builtins.filter (value: value != "") (map builtins.getEnv names);
         in
-        if value != "" then value else fallback;
+        if values != [ ] then builtins.head values else fallback;
 
       system = "aarch64-darwin";
       configName = "macos";
       legacyConfigName = "denniss-MacBook-Pro";
-      userName = envOr "USER" "dennis";
-      homeDir = envOr "HOME" "/Users/${userName}";
+      userName = envFirst [ "LAPTOP_USER" "SUDO_USER" "USER" ] "dennis";
+      homeDir = envFirst [ "LAPTOP_HOME" ] "/Users/${userName}";
       projectsRoot = "${homeDir}/Documents/Projects";
       repoRoot = "${projectsRoot}/nix";
-      hostName = envOr "HOSTNAME" legacyConfigName;
+      hostName = envFirst [ "LAPTOP_HOSTNAME" "HOSTNAME" ] legacyConfigName;
       pkgs = import nixpkgs { inherit system; };
       darwinConfig = nix-darwin.lib.darwinSystem {
         inherit system;
