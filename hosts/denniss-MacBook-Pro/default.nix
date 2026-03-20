@@ -1,6 +1,6 @@
-{ config, inputs, lib, repoRoot, self, userName, hostName, ... }:
+{ config, inputs, lib, repoRoot, self, userName, homeDir, projectsRoot, hostName, ... }:
 let
-  localModule = "/Users/dennis/.config/laptop/local.nix";
+  localModule = "${homeDir}/.config/laptop/local.nix";
 in
 {
   imports =
@@ -19,20 +19,20 @@ in
     repos.enable = true;
   };
 
-  laptop.paths.projectsRoot = "/Users/dennis/Documents/Projects";
+  laptop.paths.projectsRoot = projectsRoot;
 
   laptop.repos = [
     {
       name = "nvim";
       url = "https://github.com/dempaman86/nvim.git";
-      path = "/Users/dennis/Documents/Projects/nvim";
+      path = "${projectsRoot}/nvim";
       ensurePresent = true;
       linkTarget = ".config/nvim";
     }
     {
       name = "neowiki";
       url = "https://github.com/dempaman86/neowiki.git";
-      path = "/Users/dennis/Documents/Projects/neowiki";
+      path = "${projectsRoot}/neowiki";
       ensurePresent = true;
       linkTarget = null;
     }
@@ -43,7 +43,7 @@ in
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   users.users.${userName} = {
-    home = "/Users/${userName}";
+    home = homeDir;
   };
 
   home-manager = {
@@ -51,7 +51,7 @@ in
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
-      inherit inputs self hostName userName repoRoot;
+      inherit inputs self hostName userName homeDir projectsRoot repoRoot;
       laptop = config.laptop;
     };
     users.${userName} = import ../../modules/home/default.nix;

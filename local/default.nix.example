@@ -15,22 +15,22 @@
   # laptop.features.repos.enable = true;
   # laptop.features.dock.enable = true;
   # laptop.paths.projectsRoot =
-  #   "/Users/dennis/Documents/Projects";
+  #   "/Users/<user>/Documents/Projects";
   # laptop.repos = [
   #   {
   #     name = "nvim";
   #     url = "https://github.com/dempaman86/nvim.git";
-  #     path = "/Users/dennis/Documents/Projects/nvim";
+  #     path = "/Users/<user>/Documents/Projects/nvim";
   #     ensurePresent = true;
   #     linkTarget = ".config/nvim";
   #   }
   # ];
   #
-  # home-manager.users.dennis.home.sessionVariables = {
+  # home-manager.users.<user>.home.sessionVariables = {
   #   OPENAI_API_KEY = "replace-me";
   # };
   #
-  # home-manager.users.dennis.home.file.".hammerspoon/config/local.lua".text = ''
+  # home-manager.users.<user>.home.file.".hammerspoon/config/local.lua".text = ''
   #   return {
   #     notifications = false,
   #   }

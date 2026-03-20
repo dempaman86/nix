@@ -27,4 +27,4 @@ echo "Nasta steg:"
 echo "  mkdir -p ~/.config/laptop"
 echo "  cp \"$repo_root/local/default.nix.example\" ~/.config/laptop/local.nix"
 echo "  cd \"$repo_root\""
-echo '  nix run github:LnL7/nix-darwin/master#darwin-rebuild -- switch --flake "path:$PWD#denniss-MacBook-Pro"'
+echo '  nix run github:LnL7/nix-darwin/master#darwin-rebuild -- switch --impure --flake "path:$PWD#macos"'

@@ -2,7 +2,7 @@
 
 En deklarativ Nix-root for din maskinsetup, med macOS som forsta target och plats for senare Linux-, WSL- och container-targets.
 
-Repo:t bor i `/Users/dennis/Documents/Projects/nix` och ar den centrala källan for hur din Mac ska vara uppsatt.
+Repo:t bor normalt i `~/Documents/Projects/nix` och ar den centrala källan for hur din Mac ska vara uppsatt.
 
 ## Mal
 
@@ -49,11 +49,11 @@ Repo:t bor i `/Users/dennis/Documents/Projects/nix` och ar den centrala källan 
 
 ## Bootstrap
 
-1. Klona repo:t till `/Users/dennis/Documents/Projects/nix`.
+1. Klona repo:t till `~/Documents/Projects/nix`.
 2. Kor bootstrap-scriptet for att installera Nix om det saknas:
 
 ```bash
-cd /Users/dennis/Documents/Projects/nix
+cd ~/Documents/Projects/nix
 ./bootstrap.sh
 ```
 
@@ -68,29 +68,31 @@ cp local/default.nix.example ~/.config/laptop/local.nix
 5. Gå till repo-roten:
 
 ```bash
-cd /Users/dennis/Documents/Projects/nix
+cd ~/Documents/Projects/nix
 ```
 
 6. Forsta gangen, kor:
 
 ```bash
 nix run github:LnL7/nix-darwin/master#darwin-rebuild -- switch \
-  --flake "path:$PWD#denniss-MacBook-Pro"
+  --impure --flake "path:$PWD#macos"
 ```
 
 Nar `darwin-rebuild` finns installerat blir den vanliga operator-kommandot:
 
 ```bash
-darwin-rebuild switch --flake "path:$PWD#denniss-MacBook-Pro"
+darwin-rebuild switch --impure --flake "path:$PWD#macos"
 ```
 
 `bootstrap.sh` kor inte `darwin-rebuild` at dig. Det installerar bara Nix och skriver ut nasta kommando att kora.
 
+`--impure` behovs for att flaken ska kunna lasa aktuell `USER`, `HOME` och `HOSTNAME` pa maskinen i stallet for att vara hardkodad till en specifik anvandare.
+
 ## Verifiering
 
 - `nix --extra-experimental-features "nix-command flakes" flake check "path:$PWD"`
-- `darwin-rebuild build --flake "path:$PWD#denniss-MacBook-Pro"`
-- `darwin-rebuild switch --flake "path:$PWD#denniss-MacBook-Pro"`
+- `darwin-rebuild build --impure --flake "path:$PWD#macos"`
+- `darwin-rebuild switch --impure --flake "path:$PWD#macos"`
 
 Nuvarande maskinbild finns dokumenterad i [`inventory/current-machine.md`](/Users/dennis/Documents/Projects/nix/inventory/current-machine.md).
 
@@ -101,19 +103,19 @@ Hosten deklarerar vilka repos som ska finnas under `~/Documents/Projects`.
 I v1 galler:
 
 ```nix
-laptop.paths.projectsRoot = "/Users/dennis/Documents/Projects";
+laptop.paths.projectsRoot = "/Users/<user>/Documents/Projects";
 laptop.repos = [
   {
     name = "nvim";
     url = "https://github.com/dempaman86/nvim.git";
-    path = "/Users/dennis/Documents/Projects/nvim";
+    path = "/Users/<user>/Documents/Projects/nvim";
     ensurePresent = true;
     linkTarget = ".config/nvim";
   }
   {
     name = "neowiki";
     url = "https://github.com/dempaman86/neowiki.git";
-    path = "/Users/dennis/Documents/Projects/neowiki";
+    path = "/Users/<user>/Documents/Projects/neowiki";
     ensurePresent = true;
     linkTarget = null;
   }
@@ -129,7 +131,7 @@ Hammerspoon-konfigen bor nu i detta repo under [`hammerspoon/`](/Users/dennis/Do
 Om du vill halla lokala overrides utanfor repo:t kan du generera filer via `~/.config/laptop/local.nix`, till exempel:
 
 ```nix
-home-manager.users.dennis.home.file.".hammerspoon/config/local.lua".text = ''
+home-manager.users.<user>.home.file.".hammerspoon/config/local.lua".text = ''
   return {
     notifications = false,
   }

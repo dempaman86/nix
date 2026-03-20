@@ -4,8 +4,8 @@ Senast uppdaterad: 2026-03-20
 
 ## Sammanfattning
 
-Detta repo ar nu källan till macOS-setupen pa `/Users/dennis/Documents/Projects/nix`.
-`nvim` ligger kvar som eget live-repo i `/Users/dennis/Documents/Projects/nvim`.
+Detta repo ar nu källan till macOS-setupen pa `~/Documents/Projects/nix`.
+`nvim` ligger kvar som eget live-repo i `~/Documents/Projects/nvim`.
 
 Vi har precis borjat flytta Neovim LSP/lint fran Mason till Nix.
 
@@ -13,6 +13,7 @@ Vi har precis borjat flytta Neovim LSP/lint fran Mason till Nix.
 
 - `nix-darwin` + Home Manager ar aktiverat for `denniss-MacBook-Pro`.
 - Ett nytt `bootstrap.sh` finns i repo-roten och installerar bara Nix pa macOS.
+- Flaken ar nu justerad for att lasa `USER`, `HOME` och `HOSTNAME` via `--impure`, sa samma repo kan anvandas under andra anvandarnamn an `dennis`.
 - `nvim` repo klonas/sakerstalls under `~/Documents/Projects/nvim` och ar lankt till `~/.config/nvim`.
 - Hammerspoon, tmux, zsh och Ghostty-config ar flyttade till detta repo.
 - Ghostty installeras via `ghostty-bin` och dess config kommer fran `dotfiles/ghostty/config`.
@@ -42,11 +43,17 @@ Vi har precis borjat flytta Neovim LSP/lint fran Mason till Nix.
 - `bashls`, `pyright`, `jsonls`, `yamlls`, `yamllint`, `ts_ls` och `gopls` finns i PATH efter switch:
   - de pekar pa `/etc/profiles/per-user/dennis/bin/...`
 - `lua_ls` och `marksman` ar nu ocksa flyttade till Nix-konfigen, men inte verifierade live an.
+- `nix build --no-link --impure "path:/Users/dennis/Documents/Projects/nix#darwinConfigurations.macos.system"` passerar.
+- `nix build --no-link "path:/Users/dennis/Documents/Projects/nix#darwinConfigurations.denniss-MacBook-Pro.system"` passerar fortfarande som legacy-target.
 
 ## Viktiga filer
 
 - Nix paketlista:
   - `modules/home/packages.nix`
+- Flake entrypoint:
+  - `flake.nix`
+- Hostkonfiguration:
+  - `hosts/denniss-MacBook-Pro/default.nix`
 - Nvim LSP:
   - `/Users/dennis/Documents/Projects/nvim/lua/plugins/lsp.lua`
 - Nvim lint:
@@ -79,6 +86,7 @@ Vi har precis borjat flytta Neovim LSP/lint fran Mason till Nix.
 - `nix`-repot ar committat med:
   - `2da3101 feat: move macOS laptop setup into nix repo`
   - `e5b8d90 docs: update VM handoff status`
+  - arbetskopia innehaller nu opushade andringar for generisk anvandare/home-katalog och ny publik flake-target `#macos`
 - `nvim`-repot ar committat med:
   - `fa7a39b chore: move language tooling from Mason to Nix`
 - `tmux`-repot ar rent.
@@ -91,7 +99,8 @@ Vi har precis borjat flytta Neovim LSP/lint fran Mason till Nix.
    - skapa ny macOS-anvandare eller macOS-VM
    - klona `nix`
    - kora `./bootstrap.sh`
-   - kora `darwin-rebuild switch`
+   - `cd ~/Documents/Projects/nix`
+   - kora `darwin-rebuild switch --impure --flake "path:$PWD#macos"`
 3. Verifiera i den rena miljon:
    - repos klonas/lankas ratt under `~/Documents/Projects`
    - `command -v go`
