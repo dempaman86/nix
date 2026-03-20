@@ -9,6 +9,13 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  environment.etc = {
+    bashrc.enable = false;
+    zprofile.enable = false;
+    zshenv.enable = false;
+    zshrc.enable = false;
+  };
+
   environment.systemPackages = with pkgs; [
     firefox
     git

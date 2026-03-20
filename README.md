@@ -91,7 +91,7 @@ darwin-rebuild switch --impure --flake "path:$PWD#macos"
 
 `bootstrap.sh` kan nu ocksa kora forsta `darwin-rebuild` at dig om du svarar ja pa prompten. Om du svarar nej installerar den bara Nix, skapar local override-filen och skriver ut nasta kommando att kora.
 
-Shell-setupen ar nu home-centric: `~/.zshrc` och `~/.zprofile` hanteras via Home Manager, och configen undviker att lata nix-darwin ta over `/etc/zshrc` och `/etc/bashrc`.
+Shell-setupen ar nu home-centric: `~/.zshrc` och `~/.zprofile` hanteras via Home Manager, och configen stanger explicit av nix-darwins `/etc/bashrc`, `/etc/zprofile`, `/etc/zshenv` och `/etc/zshrc`.
 
 `--impure` behovs for att flaken ska kunna lasa aktuell anvandare och maskininfo. Vid `sudo -H nix ...` prioriterar flaken `SUDO_USER` sa att konfigurationen fortfarande riktas till den inloggade anvandaren och inte root, samtidigt som root-processen far en ren `HOME`.
 
