@@ -1,0 +1,24 @@
+return {
+  -- Exempel:
+  -- notifications = false,
+  -- windowHotkeys = {
+  --   close = {
+  --     mods = { "cmd", "shift" },
+  --     key = "q",
+  --   },
+  -- },
+  -- appHotkeys = {
+  --   ["1"] = {
+  --     name = "Brave Browser",
+  --     bundleID = "com.brave.Browser",
+  --     newWindowShortcut = {
+  --       mods = { "cmd" },
+  --       key = "n",
+  --     },
+  --   },
+  --   ["2"] = {
+  --     name = "Ghostty",
+  --     bundleID = "com.mitchellh.ghostty",
+  --   },
+  -- },
+}

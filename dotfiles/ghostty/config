@@ -1,0 +1,23 @@
+# Tema
+theme = Catppuccin Mocha
+
+# Teckensnitt
+font-family = Monaco
+font-size = 14
+
+# Fönsterinställningar
+window-padding-x = 8
+window-padding-y = 8
+window-decoration = true
+
+# Terminal egenskaper
+scrollback-limit = 10000
+copy-on-select = false
+
+# Cursor inställningar
+cursor-style = block
+
+# Andra inställningar
+confirm-close-surface = false
+quit-after-last-window-closed = true
+keybind = shift+enter=text:\x1b\r

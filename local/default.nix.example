@@ -1,0 +1,38 @@
+{ ... }:
+{
+  # Maskinspecifika och hemliga vardes ska ligga har.
+  # Filen ar tankt att bo i ~/.config/laptop/local.nix.
+  #
+  # Host-konfigurationen slar pa de delar som ska matcha den nuvarande
+  # maskinen. Har kan du override:a per maskin utan att andra den delade
+  # konfigurationen.
+  #
+  # Exempel:
+  #
+  # laptop.features.packages.enable = true;
+  # laptop.features.applications.enable = true;
+  # laptop.features.hammerspoon.enable = true;
+  # laptop.features.repos.enable = true;
+  # laptop.features.dock.enable = true;
+  # laptop.paths.projectsRoot =
+  #   "/Users/dennis/Documents/Projects";
+  # laptop.repos = [
+  #   {
+  #     name = "nvim";
+  #     url = "https://github.com/dempaman86/nvim.git";
+  #     path = "/Users/dennis/Documents/Projects/nvim";
+  #     ensurePresent = true;
+  #     linkTarget = ".config/nvim";
+  #   }
+  # ];
+  #
+  # home-manager.users.dennis.home.sessionVariables = {
+  #   OPENAI_API_KEY = "replace-me";
+  # };
+  #
+  # home-manager.users.dennis.home.file.".hammerspoon/config/local.lua".text = ''
+  #   return {
+  #     notifications = false,
+  #   }
+  # '';
+}
