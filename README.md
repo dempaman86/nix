@@ -57,11 +57,16 @@ cd ~/Documents/Projects/nix
 ./bootstrap.sh
 ```
 
-3. Skapa den lokala override-filen utanfor repo:t:
+Scriptet gor nu detta:
+
+- installerar Nix om `nix` saknas
+- skapar `~/.config/laptop/local.nix` fran example-filen om den saknas
+- fragar om det ska kora forsta `darwin-rebuild switch` direkt
+
+3. Om du vill justera local override innan forsta switchen finns filen nu har:
 
 ```bash
-mkdir -p ~/.config/laptop
-cp local/default.nix.example ~/.config/laptop/local.nix
+~/.config/laptop/local.nix
 ```
 
 4. Justera `~/.config/laptop/local.nix` med maskinspecifika vardes eller secrets.
@@ -84,7 +89,7 @@ Nar `darwin-rebuild` finns installerat blir den vanliga operator-kommandot:
 darwin-rebuild switch --impure --flake "path:$PWD#macos"
 ```
 
-`bootstrap.sh` kor inte `darwin-rebuild` at dig. Det installerar bara Nix och skriver ut nasta kommando att kora.
+`bootstrap.sh` kan nu ocksa kora forsta `darwin-rebuild` at dig om du svarar ja pa prompten. Om du svarar nej installerar den bara Nix, skapar local override-filen och skriver ut nasta kommando att kora.
 
 `--impure` behovs for att flaken ska kunna lasa aktuell `USER`, `HOME` och `HOSTNAME` pa maskinen i stallet for att vara hardkodad till en specifik anvandare.
 
