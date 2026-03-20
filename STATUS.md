@@ -16,6 +16,7 @@ Vi har precis borjat flytta Neovim LSP/lint fran Mason till Nix.
   - installerar Nix pa macOS om det saknas
   - skapar `~/.config/laptop/local.nix` om den saknas
   - fragar om den ska kora forsta `darwin-rebuild switch`
+  - kor forsta `nix run ... darwin-rebuild` med explicita `nix-command flakes` for rena maskiner
 - Flaken ar nu justerad for att lasa `USER`, `HOME` och `HOSTNAME` via `--impure`, sa samma repo kan anvandas under andra anvandarnamn an `dennis`.
 - `nvim` repo klonas/sakerstalls under `~/Documents/Projects/nvim` och ar lankt till `~/.config/nvim`.
 - Hammerspoon, tmux, zsh och Ghostty-config ar flyttade till detta repo.
@@ -101,6 +102,7 @@ Vi har precis borjat flytta Neovim LSP/lint fran Mason till Nix.
 2. For ett riktigt rent test:
    - skapa ny macOS-anvandare eller macOS-VM
    - klona `nix`
+   - om klonen ar aldre an `b1ddf47`, kora `git pull`
    - kora `./bootstrap.sh`
    - svara ja pa prompten om du vill lata scriptet kora forsta `darwin-rebuild switch`
 3. Verifiera i den rena miljon:

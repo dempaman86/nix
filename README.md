@@ -79,7 +79,7 @@ cd ~/Documents/Projects/nix
 6. Forsta gangen, kor:
 
 ```bash
-nix run github:LnL7/nix-darwin/master#darwin-rebuild -- switch \
+sudo nix --extra-experimental-features "nix-command flakes" run github:LnL7/nix-darwin/master#darwin-rebuild -- switch \
   --impure --flake "path:$PWD#macos"
 ```
 
@@ -96,8 +96,15 @@ darwin-rebuild switch --impure --flake "path:$PWD#macos"
 ## Verifiering
 
 - `nix --extra-experimental-features "nix-command flakes" flake check "path:$PWD"`
-- `darwin-rebuild build --impure --flake "path:$PWD#macos"`
+- `nix --extra-experimental-features "nix-command flakes" run github:LnL7/nix-darwin/master#darwin-rebuild -- build --impure --flake "path:$PWD#macos"`
 - `darwin-rebuild switch --impure --flake "path:$PWD#macos"`
+
+Om du testar i en VM och `bootstrap.sh` skriver ut gamla kommandon med `#denniss-MacBook-Pro` eller utan prompt, uppdatera klonen innan du fortsatter:
+
+```bash
+cd ~/Documents/Projects/nix
+git pull
+```
 
 Nuvarande maskinbild finns dokumenterad i [`inventory/current-machine.md`](/Users/dennis/Documents/Projects/nix/inventory/current-machine.md).
 

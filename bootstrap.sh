@@ -32,19 +32,20 @@ else
 fi
 
 switch_flake="path:$repo_root#macos"
+nix_flags=(--extra-experimental-features "nix-command flakes")
 
 echo
 echo "Nasta steg:"
 echo "  cd \"$repo_root\""
-echo "  sudo nix run github:LnL7/nix-darwin/master#darwin-rebuild -- switch --impure --flake \"$switch_flake\""
+echo "  sudo nix ${nix_flags[*]} run github:LnL7/nix-darwin/master#darwin-rebuild -- switch --impure --flake \"$switch_flake\""
 
 echo
 read -r -p "Kora forsta darwin-rebuild switch nu? [y/N] " run_switch
 
 if [[ "$run_switch" =~ ^[Yy]$ ]]; then
   cd "$repo_root"
-  sudo nix run github:LnL7/nix-darwin/master#darwin-rebuild -- switch --impure --flake "$switch_flake"
+  sudo nix "${nix_flags[@]}" run github:LnL7/nix-darwin/master#darwin-rebuild -- switch --impure --flake "$switch_flake"
 else
   echo "Hoppar over switch. Kor detta senare:"
-  echo "  sudo nix run github:LnL7/nix-darwin/master#darwin-rebuild -- switch --impure --flake \"$switch_flake\""
+  echo "  sudo nix ${nix_flags[*]} run github:LnL7/nix-darwin/master#darwin-rebuild -- switch --impure --flake \"$switch_flake\""
 fi
