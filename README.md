@@ -79,7 +79,7 @@ cd ~/Documents/Projects/nix
 6. Forsta gangen, kor:
 
 ```bash
-sudo nix --extra-experimental-features "nix-command flakes" run github:LnL7/nix-darwin/master#darwin-rebuild -- switch \
+nix --extra-experimental-features "nix-command flakes" run github:LnL7/nix-darwin/master#darwin-rebuild -- switch \
   --impure --flake "path:$PWD#macos"
 ```
 
@@ -90,6 +90,8 @@ darwin-rebuild switch --impure --flake "path:$PWD#macos"
 ```
 
 `bootstrap.sh` kan nu ocksa kora forsta `darwin-rebuild` at dig om du svarar ja pa prompten. Om du svarar nej installerar den bara Nix, skapar local override-filen och skriver ut nasta kommando att kora.
+
+Shell-setupen ar nu home-centric: `~/.zshrc` och `~/.zprofile` hanteras via Home Manager, och configen undviker att lata nix-darwin ta over `/etc/zshrc` och `/etc/bashrc`.
 
 `--impure` behovs for att flaken ska kunna lasa aktuell `USER`, `HOME` och `HOSTNAME` pa maskinen i stallet for att vara hardkodad till en specifik anvandare.
 

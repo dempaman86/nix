@@ -44,8 +44,8 @@ read -r -p "Kora forsta darwin-rebuild switch nu? [y/N] " run_switch
 
 if [[ "$run_switch" =~ ^[Yy]$ ]]; then
   cd "$repo_root"
-  sudo nix "${nix_flags[@]}" run github:LnL7/nix-darwin/master#darwin-rebuild -- switch --impure --flake "$switch_flake"
+  nix "${nix_flags[@]}" run github:LnL7/nix-darwin/master#darwin-rebuild -- switch --impure --flake "$switch_flake"
 else
   echo "Hoppar over switch. Kor detta senare:"
-  echo "  sudo nix ${nix_flags[*]} run github:LnL7/nix-darwin/master#darwin-rebuild -- switch --impure --flake \"$switch_flake\""
+  echo "  nix ${nix_flags[*]} run github:LnL7/nix-darwin/master#darwin-rebuild -- switch --impure --flake \"$switch_flake\""
 fi

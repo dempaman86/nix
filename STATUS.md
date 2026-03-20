@@ -18,6 +18,7 @@ Vi har precis borjat flytta Neovim LSP/lint fran Mason till Nix.
   - fragar om den ska kora forsta `darwin-rebuild switch`
   - kor forsta `nix run ... darwin-rebuild` med explicita `nix-command flakes` for rena maskiner
 - Flaken ar nu justerad for att lasa `USER`, `HOME` och `HOSTNAME` via `--impure`, sa samma repo kan anvandas under andra anvandarnamn an `dennis`.
+- `programs.zsh.enable` ar borttagen ur nix-darwin-lagret for att undvika att configen tar over `/etc/zshrc` och `/etc/bashrc`.
 - `nvim` repo klonas/sakerstalls under `~/Documents/Projects/nvim` och ar lankt till `~/.config/nvim`.
 - Hammerspoon, tmux, zsh och Ghostty-config ar flyttade till detta repo.
 - Ghostty installeras via `ghostty-bin` och dess config kommer fran `dotfiles/ghostty/config`.
