@@ -8,6 +8,7 @@ in
       ../../modules/laptop/options.nix
       ../../modules/darwin/base.nix
       ../../modules/darwin/defaults.nix
+      ../../modules/darwin/homebrew.nix
     ]
     ++ lib.optionals (builtins.pathExists localModule) [ localModule ];
 

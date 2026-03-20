@@ -95,6 +95,8 @@ Shell-setupen ar nu home-centric: `~/.zshrc` och `~/.zprofile` hanteras via Home
 
 `--impure` behovs for att flaken ska kunna lasa aktuell anvandare och maskininfo. Vid `sudo -H nix ...` prioriterar flaken `SUDO_USER` sa att konfigurationen fortfarande riktas till den inloggade anvandaren och inte root, samtidigt som root-processen far en ren `HOME`.
 
+Homebrew installeras nu via `nix-homebrew`, och `nix-darwin` anvander sedan `homebrew.casks` for appar som inte finns bra i `nixpkgs`. I nulaget installeras `Hammerspoon` den vagen.
+
 ## Verifiering
 
 - `nix --extra-experimental-features "nix-command flakes" flake check "path:$PWD"`
@@ -140,7 +142,7 @@ Activation klonar bara om repo:t saknas. Befintliga working trees rors inte.
 
 ## Hammerspoon
 
-Hammerspoon-konfigen bor nu i detta repo under [`hammerspoon/`](/Users/dennis/Documents/Projects/nix/hammerspoon) och installeras deklarativt till `~/.hammerspoon`. Forandringar kraver `darwin-rebuild switch`.
+Hammerspoon installeras nu deklarativt via `nix-homebrew` + `homebrew.casks`, medan konfigen bor i detta repo under [`hammerspoon/`](/Users/dennis/Documents/Projects/nix/hammerspoon) och installeras deklarativt till `~/.hammerspoon`. Forandringar kraver `darwin-rebuild switch`.
 
 Om du vill halla lokala overrides utanfor repo:t kan du generera filer via `~/.config/laptop/local.nix`, till exempel:
 

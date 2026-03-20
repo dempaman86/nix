@@ -9,13 +9,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, ... }:
     let
       envFirst =
         names: fallback:
@@ -39,6 +49,7 @@
           inherit inputs self hostName userName homeDir projectsRoot repoRoot;
         };
         modules = [
+          nix-homebrew.darwinModules.nix-homebrew
           ./hosts/denniss-MacBook-Pro/default.nix
           home-manager.darwinModules.home-manager
         ];
