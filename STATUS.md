@@ -12,6 +12,7 @@ Vi har precis borjat flytta Neovim LSP/lint fran Mason till Nix.
 ## Redan gjort
 
 - `nix-darwin` + Home Manager ar aktiverat for `denniss-MacBook-Pro`.
+- Ett nytt `bootstrap.sh` finns i repo-roten och installerar bara Nix pa macOS.
 - `nvim` repo klonas/sakerstalls under `~/Documents/Projects/nvim` och ar lankt till `~/.config/nvim`.
 - Hammerspoon, tmux, zsh och Ghostty-config ar flyttade till detta repo.
 - Ghostty installeras via `ghostty-bin` och dess config kommer fran `dotfiles/ghostty/config`.
@@ -77,6 +78,7 @@ Vi har precis borjat flytta Neovim LSP/lint fran Mason till Nix.
 
 - `nix`-repot ar committat med:
   - `2da3101 feat: move macOS laptop setup into nix repo`
+  - `e5b8d90 docs: update VM handoff status`
 - `nvim`-repot ar committat med:
   - `fa7a39b chore: move language tooling from Mason to Nix`
 - `tmux`-repot ar rent.
@@ -87,8 +89,8 @@ Vi har precis borjat flytta Neovim LSP/lint fran Mason till Nix.
 1. Pusha `nix`- och `nvim`-repona om de ska anvandas for VM/bootstrap-test.
 2. For ett riktigt rent test:
    - skapa ny macOS-anvandare eller macOS-VM
-   - installera Nix
-   - klona `nix` och `nvim`
+   - klona `nix`
+   - kora `./bootstrap.sh`
    - kora `darwin-rebuild switch`
 3. Verifiera i den rena miljon:
    - repos klonas/lankas ratt under `~/Documents/Projects`

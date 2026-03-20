@@ -49,8 +49,14 @@ Repo:t bor i `/Users/dennis/Documents/Projects/nix` och ar den centrala källan 
 
 ## Bootstrap
 
-1. Installera Nix pa macOS sa att kommandot `nix` finns.
-2. Klona repo:t till `/Users/dennis/Documents/Projects/nix`.
+1. Klona repo:t till `/Users/dennis/Documents/Projects/nix`.
+2. Kor bootstrap-scriptet for att installera Nix om det saknas:
+
+```bash
+cd /Users/dennis/Documents/Projects/nix
+./bootstrap.sh
+```
+
 3. Skapa den lokala override-filen utanfor repo:t:
 
 ```bash
@@ -77,6 +83,8 @@ Nar `darwin-rebuild` finns installerat blir den vanliga operator-kommandot:
 ```bash
 darwin-rebuild switch --flake "path:$PWD#denniss-MacBook-Pro"
 ```
+
+`bootstrap.sh` kor inte `darwin-rebuild` at dig. Det installerar bara Nix och skriver ut nasta kommando att kora.
 
 ## Verifiering
 
