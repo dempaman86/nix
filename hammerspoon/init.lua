@@ -1,5 +1,7 @@
 hs.window.animationDuration = 0
 
+hs.autoLaunch(true)
+
 local settings = require("modules.settings")
 
 _G.configWatcher = require("modules.reloader").start(hs.configdir)
