@@ -79,7 +79,7 @@ cd ~/Documents/Projects/nix
 6. Forsta gangen, kor:
 
 ```bash
-sudo nix --extra-experimental-features "nix-command flakes" run github:LnL7/nix-darwin/master#darwin-rebuild -- switch \
+sudo -H nix --extra-experimental-features "nix-command flakes" run github:LnL7/nix-darwin/master#darwin-rebuild -- switch \
   --impure --flake "path:$PWD#macos"
 ```
 
@@ -93,7 +93,7 @@ darwin-rebuild switch --impure --flake "path:$PWD#macos"
 
 Shell-setupen ar nu home-centric: `~/.zshrc` och `~/.zprofile` hanteras via Home Manager, och configen undviker att lata nix-darwin ta over `/etc/zshrc` och `/etc/bashrc`.
 
-`--impure` behovs for att flaken ska kunna lasa aktuell anvandare och maskininfo. Vid `sudo nix ...` prioriterar flaken `SUDO_USER` sa att konfigurationen fortfarande riktas till den inloggade anvandaren och inte root.
+`--impure` behovs for att flaken ska kunna lasa aktuell anvandare och maskininfo. Vid `sudo -H nix ...` prioriterar flaken `SUDO_USER` sa att konfigurationen fortfarande riktas till den inloggade anvandaren och inte root, samtidigt som root-processen far en ren `HOME`.
 
 ## Verifiering
 
