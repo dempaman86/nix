@@ -17,7 +17,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    firefox
     git
     ghostty-bin
     jq
