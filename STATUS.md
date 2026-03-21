@@ -23,6 +23,7 @@ Vi har precis borjat flytta Neovim LSP/lint fran Mason till Nix.
 - `environment.etc.{bashrc,zprofile,zshenv,zshrc}.enable = false` ar nu satt explicit for att configen inte ska ta over shellfiler i `/etc`.
 - `nix-homebrew` ar nu tillagt, och `Hammerspoon` installeras deklarativt via `homebrew.casks`.
 - Hammerspoon satter nu `hs.autoLaunch(true)` i `init.lua` for att be appen starta vid inloggning.
+- Firefox styrs nu via en egen Home Manager-modul, och en testpolicy force-installerar Vimium C via `ExtensionSettings`.
 - `nvim` repo klonas/sakerstalls under `~/Documents/Projects/nvim` och ar lankt till `~/.config/nvim`.
 - Hammerspoon, tmux, zsh och Ghostty-config ar flyttade till detta repo.
 - Ghostty installeras via `ghostty-bin` och dess config kommer fran `dotfiles/ghostty/config`.

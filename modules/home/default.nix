@@ -4,6 +4,7 @@
     ./packages.nix
     ./applications.nix
     ./repos.nix
+    ./firefox.nix
     ./hammerspoon.nix
     ./tmux.nix
     ./shell.nix

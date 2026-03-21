@@ -5,6 +5,7 @@
       dock.enable = lib.mkEnableOption "manage macOS Dock defaults";
       packages.enable = lib.mkEnableOption "manage user packages via Home Manager";
       applications.enable = lib.mkEnableOption "link Home Manager apps into ~/Applications";
+      firefox.enable = lib.mkEnableOption "manage Firefox policies and profiles via Home Manager";
       hammerspoon.enable = lib.mkEnableOption "manage ~/.hammerspoon from the nix repo";
       repos.enable = lib.mkEnableOption "manage the repos that should exist under the projects root";
     };

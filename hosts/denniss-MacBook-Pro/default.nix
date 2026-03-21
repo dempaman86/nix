@@ -16,6 +16,7 @@ in
     dock.enable = true;
     packages.enable = true;
     applications.enable = true;
+    firefox.enable = true;
     hammerspoon.enable = true;
     repos.enable = true;
   };

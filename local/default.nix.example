@@ -11,6 +11,7 @@
   #
   # laptop.features.packages.enable = true;
   # laptop.features.applications.enable = true;
+  # laptop.features.firefox.enable = true;
   # laptop.features.hammerspoon.enable = true;
   # laptop.features.repos.enable = true;
   # laptop.features.dock.enable = true;
